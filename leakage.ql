@@ -1,7 +1,7 @@
 /**
  * @name Leakage Example
  * @description This query detects potential train-test leakage in your code.
- * @kind taint-tracking
+ * @kind path-problem
  * @problem.severity warning
  * @id python/ml/leakage
  * @language python
