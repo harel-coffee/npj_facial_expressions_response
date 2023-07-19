@@ -11,6 +11,9 @@ import python
 import semmle.python.dataflow.new.TaintTracking
 import semmle.python.ApiGraphs
 import semmle.python.dataflow.new.DataFlow
+import DataFlow::PathGraph
+
+
 
 class StartFromOverSampling extends TaintTracking::Configuration {
     StartFromOverSampling() { this = "StartFromOverSampling" }
@@ -44,13 +47,12 @@ class StartFromOverSampling extends TaintTracking::Configuration {
       )
     }
 
-    
-
-    
+      
 
     
 }
 
-from DataFlow::Node src, DataFlow::Node dst, StartFromOverSampling config
-where config.hasFlow(src, dst)
-select src, dst, "dummy" // Add a dummy result pattern
+from DataFlow::PathNode source, DataFlow::PathNode sink, StartFromOverSampling config
+where config.hasFlowPath(source, sink)
+select sink.getNode(), source, sink, "Token built from $@.", source.getNode(), "predictable value"
+// select sink, source, sink, "This call gets from an over_sampling method to a function that uses cross_val"
