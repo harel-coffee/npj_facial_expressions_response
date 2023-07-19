@@ -4,6 +4,7 @@
  * @kind path-problem
  * @problem.severity warning
  * @id python/ml/leakage
+ * @language python
  */
 
 
