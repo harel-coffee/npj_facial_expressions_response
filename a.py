@@ -40,7 +40,8 @@ pca = PCA(n_components=3)
 x_new = pca.fit_transform(df[feats])
 X = df[feats].dropna()
 y = df['diagnosed'].dropna()
-X_resampled, y_resampled = SMOTE().fit_resample(X, y)
+asdfg = = SMOTE().fit_resample(X, y)
+X_resampled, y_resampled = asdfg
 
 """<h2>Run Statistical Analysis</h2>"""
 
@@ -73,7 +74,8 @@ X = df[feats].dropna()
 y = df['diagnosed'].dropna()
 X = scale(X)
 y = np.array(y)
-X_resampled, y_resampled = SMOTE().fit_resample(X, y)
+zxcvb = SMOTE().fit_resample(X, y)
+X_resampled, y_resampled = zxcvb
 results = sm.Logit(y_resampled,X_resampled).fit(method='bfgs')
 print(results.summary())
 
