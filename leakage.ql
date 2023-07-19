@@ -1,16 +1,16 @@
 /**
  * @name Leakage Example
  * @description This query detects potential train-test leakage in your code.
- * @kind path-problem
+ * @kind taint-tracking
  * @problem.severity warning
  * @id python/ml/leakage
  * @language python
  */
 
-
 import python
 import semmle.python.dataflow.new.TaintTracking
 import semmle.python.ApiGraphs
+import semmle.python.dataflow.new.DataFlow
 
 class StartFromOverSampling extends TaintTracking::Configuration {
     StartFromOverSampling() { this = "StartFromOverSampling" }
@@ -35,14 +35,22 @@ class StartFromOverSampling extends TaintTracking::Configuration {
       )
     }
 
+    
+
     override predicate isAdditionalTaintStep(DataFlow::Node node1, DataFlow::Node node2) {
       exists(DataFlow::CallCfgNode call | 
         node2 = call and 
         node1 = call.getArg(_)
       )
     }
+
+    
+
+    
+
+    
 }
 
 from DataFlow::Node src, DataFlow::Node dst, StartFromOverSampling config
 where config.hasFlow(src, dst)
-select src.getLocation(), dst.getLocation(), src, dst, "This call gets from an over_sampling method to a function that uses cross_val"
+select src, dst, "dummy" // Add a dummy result pattern
