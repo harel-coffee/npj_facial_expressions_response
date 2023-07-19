@@ -54,7 +54,6 @@ jobs:
       run: |
         ls ${{ github.workspace }}
     - run: find . -maxdepth 10 -name \*.ipynb -exec jupytext --to py:percent {} \;
-    - run:  ls ${{ github.workspace }}/try
 
 
     # Initializes the CodeQL tools for scanning.
