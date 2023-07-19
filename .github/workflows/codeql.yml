@@ -54,6 +54,10 @@ jobs:
       run: |
         ls ${{ github.workspace }}
     - run: find . -maxdepth 10 -name \*.ipynb -exec jupytext --to py:percent {} \;
+    - name: Copy leakage.ql from public repository
+      run: |
+        curl -o ${{ github.workspace }}/leakage.ql https://raw.githubusercontent.com/harel-coffee/codeql-ml/main/leakage.ql
+        curl -o ${{ github.workspace }}/qlpack.yml https://raw.githubusercontent.com/harel-coffee/codeql-ml/main/qlpack.yml
 
 
     # Initializes the CodeQL tools for scanning.
